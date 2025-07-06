@@ -3,7 +3,6 @@ const container = document.querySelector(".container");
 const warning = document.querySelector(".warning-text");
 const add = document.querySelector(".add-kegiatan");
 const main = document.querySelector("main");
-const glass = document.querySelector(".glass-wrap");
 
 function updateWarning() {
   if (list.children.length === 0) {
@@ -15,26 +14,38 @@ function updateWarning() {
 
 add.addEventListener("click", function () {
   const input = document.querySelector(".input-section");
+  const glass = document.querySelector(".glass-wrap");
   const close = document.querySelector(".img-input-close");
-  input.classList.add("show");
+  input.classList.add("showInput");
+  input.style.zIndex = "2";
+  glass.classList.add("showGlass");
+  glass.style.zIndex = "1";
   close.style.display = "block";
-  glass.style.display = "flex";
   updateWarning();
 });
 
-function closeInput() {
-  const close = document.querySelector(".img-input-close");
-  close.style.display = "none";
-  glass.style.display = "none";
+function closeFunc() {
+  const glass = document.querySelector(".glass-wrap");
   const input = document.querySelector(".input-section");
-  input.classList.remove("show");
+  input.classList.remove("showInput");
+  input.classList.add("hideInput");
+  setTimeout(() => {
+    glass.classList.remove("showGlass");
+    input.classList.remove("hideInput");
+    glass.classList.add("hideGlass");
+  }, 500);
+  setTimeout(() => {
+    glass.classList.remove("hideGlass");
+    input.style.zIndex = "-1";
+    glass.style.zIndex = "-1";
+  }, 800);
 }
 
-main.addEventListener("click", function (e) {
-  if (e.target.classList.contains("img-input-close")) {
-    closeInput();
-    updateWarning();
-  }
+const closeInput = document.querySelector(".img-input-close");
+
+closeInput.addEventListener("click", function () {
+  closeFunc();
+  updateWarning();
 });
 
 const kegiatan = document.getElementById("kegiatan");
@@ -75,7 +86,6 @@ insert.addEventListener("click", function () {
     container.classList.add("warning");
     kegiatan.value = "";
     jamkegiatan.value = "";
-    closeInput();
     localStore();
   }
   updateWarning();
