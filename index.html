@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do list app</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Macondo&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Press+Start+2P&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>TO DO LIST APP</h1>
+    </header>
+    <main>
+      <div class="glass-wrap">
+        <section class="input-section">
+          <img src="img/cross.svg" alt="close" class="img-input-close" />
+          <h2>Tambah Kegiatan</h2>
+          <input
+            type="text"
+            name="text"
+            id="kegiatan"
+            placeholder="Masukkan kegiatan disini"
+          />
+
+          <input
+            type="text"
+            name="text"
+            id="jamkegiatan"
+            placeholder="Masukkan jam kegiatan disini"
+          />
+          <button type="button" id="insert" class="insert">Tambah</button>
+        </section>
+      </div>
+
+      <section class="info">
+        <button type="button" class="add-kegiatan">+</button>
+      </section>
+
+      <section class="container">
+        <p class="warning-text">Kegiatan kamu kosong</p>
+        <div class="list"></div>
+      </section>
+
+      <footer></footer>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
