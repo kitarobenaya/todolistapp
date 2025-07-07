@@ -280,6 +280,13 @@ main .container .card {
   color: #fff;
 }
 
+main .container .card .checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  accent-color: rgb(0, 255, 60);
+}
+
 main .container .card .remove {
   width: 20px;
   height: 20px;

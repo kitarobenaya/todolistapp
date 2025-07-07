@@ -60,6 +60,7 @@ function localStore() {
     data.push({
       kegiatan: card.querySelector("p").textContent,
       jam: card.querySelector(".wrap p").textContent,
+      checkbox: card.querySelector('input[type="checkbox"]').checked,
     });
   });
   localStorage.setItem("kegiatan", JSON.stringify(data));
@@ -83,6 +84,7 @@ insert.addEventListener("click", function () {
         <p>${kegiatan.value}</p>
         <div class="wrap">
         <p>${jamkegiatan.value}</p>
+        <input type='checkbox' class='checkbox'>
           <button class="remove">
             <img src="img/cross.svg" alt="remove" />
           </button>
@@ -108,6 +110,9 @@ function loadLocalStore() {
           <p>${item.kegiatan}</p>
           <div class="wrap">
             <p>${item.jam}</p>
+        <input type='checkbox' class='checkbox'${
+          item.checkbox ? "checked" : ""
+        }>
             <button class="remove">
               <img src="img/cross.svg" alt="remove" />
             </button>
@@ -120,6 +125,12 @@ function loadLocalStore() {
 }
 
 loadLocalStore();
+
+list.addEventListener("change", function (e) {
+  if (e.target.classList.contains("checkbox")) {
+    localStore();
+  }
+});
 
 list.addEventListener("click", function (e) {
   if (e.target.closest(".remove")) {
