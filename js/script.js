@@ -3,6 +3,12 @@ const container = document.querySelector(".container");
 const warning = document.querySelector(".warning-text");
 const add = document.querySelector(".add-kegiatan");
 const main = document.querySelector("main");
+const input = document.querySelector(".input-section");
+const glass = document.querySelector(".glass-wrap");
+const closeInput = document.querySelector(".img-input-close");
+const kegiatan = document.getElementById("kegiatan");
+const jamkegiatan = document.getElementById("jamkegiatan");
+const insert = document.getElementById("insert");
 
 function updateWarning() {
   if (list.children.length === 0) {
@@ -13,20 +19,15 @@ function updateWarning() {
 }
 
 add.addEventListener("click", function () {
-  const input = document.querySelector(".input-section");
-  const glass = document.querySelector(".glass-wrap");
-  const close = document.querySelector(".img-input-close");
   input.classList.add("showInput");
   input.style.zIndex = "2";
   glass.classList.add("showGlass");
   glass.style.zIndex = "1";
-  close.style.display = "block";
+  closeInput.style.display = "block";
   updateWarning();
 });
 
 function closeFunc() {
-  const glass = document.querySelector(".glass-wrap");
-  const input = document.querySelector(".input-section");
   input.classList.remove("showInput");
   input.classList.add("hideInput");
   setTimeout(() => {
@@ -41,17 +42,10 @@ function closeFunc() {
   }, 800);
 }
 
-const closeInput = document.querySelector(".img-input-close");
-
 closeInput.addEventListener("click", function () {
   closeFunc();
   updateWarning();
 });
-
-const kegiatan = document.getElementById("kegiatan");
-const jamkegiatan = document.getElementById("jamkegiatan");
-
-const insert = document.getElementById("insert");
 
 function localStore() {
   const cards = document.querySelectorAll(".card");
