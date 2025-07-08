@@ -13,8 +13,10 @@ const insert = document.getElementById("insert");
 function updateWarning() {
   if (list.children.length === 0) {
     warning.classList.remove("none");
+    warning.setAttribute("aria-hidden", "false");
   } else {
     warning.classList.add("none");
+    warning.setAttribute("aria-hidden", "true");
   }
 }
 
@@ -34,12 +36,12 @@ function closeFunc() {
     glass.classList.remove("showGlass");
     input.classList.remove("hideInput");
     glass.classList.add("hideGlass");
-  }, 500);
+  }, 300);
   setTimeout(() => {
     glass.classList.remove("hideGlass");
     input.style.zIndex = "-1";
     glass.style.zIndex = "-1";
-  }, 800);
+  }, 600);
 }
 
 closeInput.addEventListener("click", function () {
@@ -55,6 +57,7 @@ function localStore() {
       kegiatan: card.querySelector("p").textContent,
       jam: card.querySelector(".wrap p").textContent,
       checkbox: card.querySelector('input[type="checkbox"]').checked,
+      label: card.getAttribute("aria-label"),
     });
   });
   localStorage.setItem("kegiatan", JSON.stringify(data));
@@ -73,8 +76,9 @@ insert.addEventListener("click", function () {
       text: "Berhasil menambahkan kegiatan",
       icon: "success",
     });
+
     const HTMLstring = `
-        <div class="card">
+        <div class="card" aria-label="kegiatan ${kegiatan.value} pada jam ${jamkegiatan.value}">
         <p>${kegiatan.value}</p>
         <div class="wrap">
         <p>${jamkegiatan.value}</p>
@@ -100,7 +104,7 @@ function loadLocalStore() {
   list.innerHTML = "";
   data.forEach((item) => {
     const HTMLstring = `
-        <div class="card">
+        <div class="card" aria-label="${item.label}">
           <p>${item.kegiatan}</p>
           <div class="wrap">
             <p>${item.jam}</p>

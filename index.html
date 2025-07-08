@@ -18,34 +18,59 @@
       <h1>TO DO LIST APP</h1>
     </header>
     <main>
-      <div class="glass-wrap">
-        <section class="input-section">
-          <img src="img/cross.svg" alt="close" class="img-input-close" />
+      <div class="glass-wrap" aria-hidden="true">
+        <section class="input-section" aria-label="Form input kegiatan">
+          <img
+            src="img/cross.svg"
+            role="button"
+            alt="close"
+            class="img-input-close"
+            aria-label="Tutup form input kegiatan"
+          />
           <h2>Tambah Kegiatan</h2>
           <input
             type="text"
+            role="textbox"
             name="text"
             id="kegiatan"
             placeholder="Masukkan kegiatan disini"
+            aria-label="input kegiatan"
           />
 
           <input
             type="text"
+            role="textbox"
             name="text"
             id="jamkegiatan"
             placeholder="Masukkan jam kegiatan disini"
+            aria-label="input jam kegiatan"
           />
-          <button type="button" id="insert" class="insert">Tambah</button>
+          <button
+            type="button"
+            role="button"
+            id="insert"
+            class="insert"
+            aria-label="tambah kegiatan"
+          >
+            Tambah
+          </button>
         </section>
       </div>
 
-      <section class="info">
-        <button type="button" class="add-kegiatan">Add +</button>
+      <section class="info" aria-hidden="true">
+        <button
+          type="button"
+          role="button"
+          class="add-kegiatan"
+          aria-label="memunculkan form input kegiatan"
+        >
+          Add +
+        </button>
       </section>
 
-      <section class="container">
+      <section class="container" aria-hidden="true">
         <p class="warning-text">Kegiatan kamu kosong</p>
-        <div class="list"></div>
+        <div class="list" aria-label="list kegiatan"></div>
       </section>
     </main>
     <script src="js/script.js"></script>

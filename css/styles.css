@@ -97,7 +97,7 @@ main .glass-wrap {
 }
 
 main .glass-wrap.showGlass {
-  animation: glassShow 500ms linear forwards;
+  animation: glassShow 300ms linear forwards;
 }
 
 @keyframes glassShow {
@@ -158,7 +158,7 @@ main .input-section .img-input-close {
 }
 
 main .input-section.showInput {
-  animation: fadein 500ms linear forwards;
+  animation: fadein 300ms linear forwards;
 }
 
 @keyframes fadein {
