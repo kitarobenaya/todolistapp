@@ -19,14 +19,14 @@
     </header>
     <main>
       <div class="glass-wrap" aria-hidden="true">
+        <img
+          src="img/cross.svg"
+          role="button"
+          alt="close"
+          class="img-input-close"
+          aria-label="Tutup form input kegiatan"
+        />
         <section class="input-section" aria-label="Form input kegiatan">
-          <img
-            src="img/cross.svg"
-            role="button"
-            alt="close"
-            class="img-input-close"
-            aria-label="Tutup form input kegiatan"
-          />
           <h2>Tambah Kegiatan</h2>
           <input
             type="text"
@@ -35,6 +35,7 @@
             id="kegiatan"
             placeholder="Masukkan kegiatan disini"
             aria-label="input kegiatan"
+            required
           />
 
           <input
@@ -44,6 +45,7 @@
             id="jamkegiatan"
             placeholder="Masukkan jam kegiatan disini"
             aria-label="input jam kegiatan"
+            required
           />
           <button
             type="button"
@@ -57,18 +59,18 @@
         </section>
       </div>
 
-      <section class="info" aria-hidden="true">
+      <section class="button-wrap">
         <button
           type="button"
           role="button"
           class="add-kegiatan"
           aria-label="memunculkan form input kegiatan"
         >
-          Add +
+          + Tambah
         </button>
       </section>
 
-      <section class="container" aria-hidden="true">
+      <section class="container">
         <p class="warning-text">Kegiatan kamu kosong</p>
         <div class="list" aria-label="list kegiatan"></div>
       </section>

@@ -20,13 +20,17 @@ function updateWarning() {
   }
 }
 
-add.addEventListener("click", function () {
+function showInputAndGlass() {
   input.classList.add("showInput");
   input.style.zIndex = "2";
   glass.classList.add("showGlass");
   glass.style.zIndex = "1";
   closeInput.style.display = "block";
   updateWarning();
+}
+
+add.addEventListener("click", function () {
+  showInputAndGlass();
 });
 
 function closeFunc() {
@@ -69,16 +73,14 @@ insert.addEventListener("click", function () {
       title: "Gagal!",
       text: "Kolom input tidak boleh kosong",
       icon: "error",
+      timer: 3000,
     });
   } else {
-    Swal.fire({
-      title: "Berhasil!",
-      text: "Berhasil menambahkan kegiatan",
-      icon: "success",
-    });
+    closeFunc();
 
-    const HTMLstring = `
-        <div class="card" aria-label="kegiatan ${kegiatan.value} pada jam ${jamkegiatan.value}">
+    setTimeout(() => {
+      const HTMLstring = `
+        <div class="card showadd" aria-label="kegiatan ${kegiatan.value} pada jam ${jamkegiatan.value}">
         <p>${kegiatan.value}</p>
         <div class="wrap">
         <p>${jamkegiatan.value}</p>
@@ -90,13 +92,30 @@ insert.addEventListener("click", function () {
         </div>
         `;
 
-    list.insertAdjacentHTML("beforeend", HTMLstring);
-    container.classList.add("warning");
-    kegiatan.value = "";
-    jamkegiatan.value = "";
-    localStore();
+      list.insertAdjacentHTML("beforeend", HTMLstring);
+
+      container.scrollTo({ top: list.scrollHeight, behavior: "smooth" });
+
+      container.classList.add("warning");
+      kegiatan.value = "";
+      jamkegiatan.value = "";
+      localStore();
+      updateWarning();
+    }, 600);
+
+    setTimeout(() => {
+      Swal.fire({
+        title: "Berhasil!",
+        text: "Berhasil menambahkan kegiatan",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          showInputAndGlass();
+        }
+      });
+    }, 1450);
   }
-  updateWarning();
 });
 
 function loadLocalStore() {
@@ -136,6 +155,7 @@ list.addEventListener("click", function (e) {
       title: "Berhasil!",
       text: "Berhasil menghapus kegiatan",
       icon: "success",
+      timer: 3000,
     });
     e.target.closest(".card").remove();
     localStore();

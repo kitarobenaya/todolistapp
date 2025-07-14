@@ -41,8 +41,8 @@ header h1 {
     blink 0.2s step-end infinite alternate;
   overflow: hidden;
   white-space: nowrap;
-  font-size: 2.5rem;
-  font-weight: 600;
+  font-size: 3rem;
+  font-weight: 800;
   letter-spacing: 0.1rem;
   width: 0;
   border-right: 2px solid #fff;
@@ -82,13 +82,26 @@ main {
 
 /* input section page */
 
+main .img-input-close {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 2;
+  top: 20px;
+  right: 20px;
+  display: none;
+}
+
 main .glass-wrap {
   position: absolute;
   width: 100%;
   height: 100vh;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(50px);
   top: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   opacity: 0;
   align-items: center;
@@ -101,7 +114,19 @@ main .glass-wrap.showGlass {
 }
 
 @keyframes glassShow {
-  to {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.9;
+  }
+  100% {
     opacity: 1;
   }
 }
@@ -130,75 +155,75 @@ main .glass-wrap.hideGlass {
 
 main .input-section {
   position: absolute;
-  width: 30%;
-  height: 200px;
+  width: 40%;
+  height: 300px;
   display: flex;
   opacity: 0;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  row-gap: 1rem;
+  row-gap: 1.5rem;
   margin-bottom: 1rem;
   background-color: #fff;
   padding: 10px;
   border-radius: 20px;
   color: rgb(50, 135, 210);
   z-index: 0;
+  transform: scale(1);
 }
 
-main .input-section .img-input-close {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  z-index: 2;
-  top: 10px;
-  right: 10px;
-  display: none;
+main .input-section h2 {
+  font-weight: 800;
+  font-size: 2.5rem;
 }
 
 main .input-section.showInput {
-  animation: fadein 300ms linear forwards;
+  animation: bouncein 500ms ease-in-out forwards;
 }
 
-@keyframes fadein {
-  from {
-    margin-top: -20rem;
+@keyframes bouncein {
+  0% {
+    transform: scale(0);
   }
-  to {
+  50% {
+    transform: scale(1.2);
     opacity: 1;
-    margin-top: 0rem;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
 main .input-section.hideInput {
-  animation: fadeout 300ms linear forwards;
+  animation: bounceout 300ms linear forwards;
 }
 
-@keyframes fadeout {
-  from {
-    margin-top: 0;
+@keyframes bounceout {
+  0% {
+    transform: scale(1);
     opacity: 1;
   }
-  to {
-    margin-top: -20rem;
+  100% {
     opacity: 0;
+    transform: scale(0);
   }
 }
 
 main .input-section input {
   width: 60%;
-  height: 2rem;
+  height: 2.5rem;
   border-radius: 0.5rem;
   padding: 0.5rem;
   border: 1px solid rgb(50, 135, 210);
   font-family: "Poppins";
   font-weight: 500;
+  font-size: 1.1rem;
 }
 
 main .input-section button {
-  width: 20%;
-  height: 2rem;
+  width: 30%;
+  height: 2.1rem;
   border-radius: 0.5rem;
   border: none;
   background-color: rgb(50, 135, 210);
@@ -206,45 +231,51 @@ main .input-section button {
   cursor: pointer;
   font-family: "Poppins";
   font-weight: 600;
-  border: 2px solid #fff;
+  font-size: 1.05rem;
 }
 
 /* /input section page */
 
-/* info page */
+/* button-wrap page */
 
-main .info {
+main .button-wrap {
   display: flex;
   width: fit-content;
-  margin-left: 36%;
-  background-color: #fff;
-  padding: 0.2rem;
-  border-radius: 13px;
+  margin-left: 34%;
   margin-bottom: 0.3rem;
   color: black;
   justify-content: center;
   align-items: center;
 }
 
-main .info button.add-kegiatan {
+main .button-wrap button.add-kegiatan {
   width: auto;
   height: auto;
-  border-radius: 10px;
-  padding: 0.2rem;
+  border-radius: 12px;
+  padding: 0.4rem;
   border: 1px solid rgb(50, 135, 210);
-  background-color: rgb(50, 135, 210);
-  color: #fff;
+  background-color: #fff;
+  color: rgb(50, 135, 210);
   cursor: pointer;
+  font-weight: 600;
+  position: relative;
+  transition: all 300ms ease-in-out;
 }
 
-/* /info page */
+main .button-wrap button.add-kegiatan:hover {
+  color: #000;
+  background-color: transparent;
+  background-color: rgb(0, 255, 60);
+}
+
+/* /button-wrap page */
 
 /* container list page */
 
 main .container {
   background-color: #fff;
   max-height: 320px;
-  overflow-x: auto;
+  overflow-y: auto;
   padding: 1rem;
   border-radius: 0.5rem;
   margin-bottom: 10rem;
@@ -278,6 +309,26 @@ main .container .card {
   justify-content: space-between;
   row-gap: 10px;
   color: #fff;
+  font-weight: 500;
+}
+
+main .container .card.showadd {
+  animation: fadeIn 500ms ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 main .container .card .checkbox {
@@ -285,17 +336,24 @@ main .container .card .checkbox {
   height: 20px;
   border-radius: 50%;
   accent-color: rgb(0, 255, 60);
+  cursor: pointer;
 }
 
 main .container .card .remove {
   width: 20px;
   height: 20px;
-  background-color: red;
+  background-color: white;
   border-radius: 50%;
-  border: 1px solid red;
+  border: 1px solid black;
   color: #fff;
   cursor: pointer;
   position: relative;
+  transition: all 300ms ease-in-out;
+}
+
+main .container .card .remove:hover {
+  background-color: red;
+  border: 1px solid red;
 }
 
 main .container .card .remove img {
@@ -324,12 +382,24 @@ footer {
 /* responsive for mobile */
 
 @media screen and (max-width: 480px) {
+  header h1 {
+    font-size: 2.5rem;
+  }
   main .input-section {
     width: 90%;
+    row-gap: 1rem;
   }
 
-  main .info {
-    margin-left: 76%;
+  main .input-section h2 {
+    font-size: 1.9rem;
+  }
+
+  main .input-section input {
+    width: 70%;
+  }
+
+  main .button-wrap {
+    margin-left: 72%;
   }
 
   main .container {
@@ -348,8 +418,8 @@ footer {
     width: 60%;
   }
 
-  main .info {
-    margin-left: 54%;
+  main .button-wrap {
+    margin-left: 51%;
   }
 
   main .container {
