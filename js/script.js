@@ -9,9 +9,10 @@ const closeInput = document.querySelector(".img-input-close");
 const kegiatan = document.getElementById("kegiatan");
 const jamkegiatan = document.getElementById("jamkegiatan");
 const insert = document.getElementById("insert");
+const clearAllButton = document.querySelector('.clearall');
 
 function updateWarning() {
-  if (list.children.length === 0) {
+  if (list.children.length === 0 || list.innerHTML == "") {
     warning.classList.remove("none");
     warning.setAttribute("aria-hidden", "false");
   } else {
@@ -162,3 +163,15 @@ list.addEventListener("click", function (e) {
     updateWarning();
   }
 });
+
+clearAllButton.addEventListener('click', function(){
+  localStorage.clear();
+    Swal.fire({
+      title: "Berhasil!",
+      text: "Berhasil menghapus semua kegiatan!",
+      icon: "success",
+      timer: 3000,
+    })
+  list.innerHTML = "";
+  updateWarning();
+})

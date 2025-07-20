@@ -275,10 +275,10 @@ main .button-wrap button.add-kegiatan:hover {
 main .container {
   background-color: #fff;
   max-height: 320px;
+  position: relative;
   overflow-y: auto;
   padding: 1rem;
   border-radius: 0.5rem;
-  margin-bottom: 10rem;
   width: 40%;
   display: flex;
   align-items: center;
@@ -366,6 +366,28 @@ main .container .card .remove img {
   transform: translate(-50%, -50%);
 }
 
+/* clear all button */
+
+main button.clearall {
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  padding: 0.3rem;
+  border: 1px solid red;
+  background-color: red;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 0.3rem;
+  margin-left: 32%;
+  margin-bottom: 8rem;
+  font-weight: 400;
+  transition: all 300ms ease-in-out;
+}
+
+main button.clearall:hover {
+  box-shadow: red 0px 0px 10px 3px;
+}
+
 /* footer page */
 
 footer {
@@ -409,6 +431,10 @@ footer {
   main .container .card {
     width: 90%;
   }
+
+  main button.clearall {
+    margin-left: 68%;
+  }
 }
 
 /* responsive for tablet */
@@ -428,5 +454,9 @@ footer {
 
   main .container .card {
     width: 70%;
+  }
+
+  main button.clearall {
+    margin-left: 48%;
   }
 }
