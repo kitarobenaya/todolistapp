@@ -1,29 +1,35 @@
 # To Do List App 📝
 
-Sebuah aplikasi sederhana untuk mencatat dan mengelola daftar tugas harian secara interaktif. Dibuat menggunakan HTML, CSS, dan JavaScript, aplikasi ini dirancang sebagai latihan untuk mengasah kemampuan web development front-end.
+An app for managing daily tasks in a simple and interactive way. Built with HTML, CSS, and JavaScript, this app is designed as a practice exercise to hone front-end web development skills.
 
-## 🔧 Fitur Utama
-- ✅ Menambahkan tugas
-- 🗑️ Menghapus tugas
-- ✔️ Menandai tugas sebagai selesai
-- 💾 Penyimpanan data menggunakan `localStorage` agar data tidak hilang saat halaman direfresh
-- 🎨 UI ringan dan sederhana
+## 🔧 Feature List
 
-## 🧰 Teknologi yang Digunakan
+- ✅ Add a Task
+- 🗑️ Delete the Task
+- ✔️ Mark the task as completed
+- 💾 Use `localStorage` to store the data
+- 🎨 Clean UI
+
+## 🧰 Technology Used
+
 - HTML5
 - CSS3
 - JavaScript (Vanilla)
 
-## 📱 Responsif
-Aplikasi ini dirancang agar tetap nyaman digunakan di berbagai ukuran layar, baik desktop maupun mobile.
+## 📱 Responsive
+
+This application is designed to remain comfortable to use on various screen sizes, both desktop and mobile.
 
 ## 🌐 Live Demo
-[Klik untuk mencoba aplikasi](https://kitarobenaya.github.io/todolistapp/)
 
-## 📝 Tujuan Proyek
-Proyek ini dibuat untuk memperkuat pemahaman tentang DOM manipulation, event handling, dan penggunaan `localStorage`. Juga digunakan sebagai salah satu bahan presentasi untuk wawancara kelas industri.
+[Click for try the app](https://kitarobenaya.github.io/todolistapp/)
 
-## 📌 Rencana Pengembangan (To-do)
-- [ ] Filter tugas
-- [ ] Edit nama tugas
+## 📝 The purpose of this project
+
+This project is built for hone skills in DOM manipulation, event handling, and `localStorage` usage.
+
+## 📌 Development Plan (To-do)
+
+- [ ] Task filter
+- [ ] Edit task name
 - [ ] Dark mode
