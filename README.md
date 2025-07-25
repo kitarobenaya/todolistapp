@@ -22,7 +22,7 @@ This application is designed to remain comfortable to use on various screen size
 
 ## 🌐 Live Demo
 
-[Click for try the app](https://kitarobenaya.github.io/todolistapp/)
+[Click to try the app](https://kitarobenaya.github.io/todolistapp/)
 
 ## 📝 The purpose of this project
 
