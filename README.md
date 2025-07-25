@@ -24,6 +24,6 @@ Aplikasi ini dirancang agar tetap nyaman digunakan di berbagai ukuran layar, bai
 Proyek ini dibuat untuk memperkuat pemahaman tentang DOM manipulation, event handling, dan penggunaan `localStorage`. Juga digunakan sebagai salah satu bahan presentasi untuk wawancara kelas industri.
 
 ## 📌 Rencana Pengembangan (To-do)
-- [ ] Filter tugas (belum selesai / selesai)
+- [ ] Filter tugas
 - [ ] Edit nama tugas
 - [ ] Dark mode
