@@ -10,7 +10,13 @@ html {
 }
 
 .none {
-  display: none !important;
+  display: none;
+}
+
+.ghost {
+  opacity: 0.8;
+  transition: opacity 0.3s ease-in-out;
+  cursor: grabbing;
 }
 
 body {

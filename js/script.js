@@ -9,15 +9,24 @@ const closeInput = document.querySelector(".img-input-close");
 const kegiatan = document.getElementById("kegiatan");
 const jamkegiatan = document.getElementById("jamkegiatan");
 const insert = document.getElementById("insert");
-const clearAllButton = document.querySelector('.clearall');
+const clearAllButton = document.querySelector(".clearall");
+let flagClear = false;
 
 function updateWarning() {
   if (list.children.length === 0 || list.innerHTML == "") {
     warning.classList.remove("none");
     warning.setAttribute("aria-hidden", "false");
+    flagClear = false;
+    clearAllButton.disabled = true;
+    clearAllButton.style.opacity = "0.5";
+    clearAllButton.style.cursor = "not-allowed";
   } else {
     warning.classList.add("none");
     warning.setAttribute("aria-hidden", "true");
+    flagClear = true;
+    clearAllButton.disabled = false;
+    clearAllButton.style.opacity = "1"; 
+    clearAllButton.style.cursor = "pointer";
   }
 }
 
@@ -144,6 +153,14 @@ function loadLocalStore() {
 
 loadLocalStore();
 
+const sortable = new Sortable(list, {
+  animation: 150,
+  ghostClass: 'ghost',
+  onEnd: function () {
+    localStore();
+  }
+});
+
 list.addEventListener("change", function (e) {
   if (e.target.classList.contains("checkbox")) {
     localStore();
@@ -164,14 +181,14 @@ list.addEventListener("click", function (e) {
   }
 });
 
-clearAllButton.addEventListener('click', function(){
-  localStorage.clear();
-    Swal.fire({
-      title: "Berhasil!",
-      text: "Berhasil menghapus semua kegiatan!",
-      icon: "success",
-      timer: 3000,
-    })
+clearAllButton.addEventListener("click", function () {
+  localStorage.removeItem("kegiatan");
+  Swal.fire({
+    title: "Berhasil!",
+    text: "Berhasil menghapus semua kegiatan!",
+    icon: "success",
+    timer: 3000,
+  });
   list.innerHTML = "";
   updateWarning();
-})
+});
