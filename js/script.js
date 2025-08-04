@@ -15,7 +15,7 @@ const darkButton = document.querySelector(".dark-button");
 
 darkButton.addEventListener("click", function () {
   this.classList.toggle("night");
-  if( this.classList.contains("night")) {
+  if (this.classList.contains("night")) {
     this.classList.remove("light");
     this.setAttribute("aria-label", "ubah tema ke terang");
     document.body.classList.add("dark");
@@ -25,7 +25,9 @@ darkButton.addEventListener("click", function () {
     this.setAttribute("aria-label", "ubah tema ke gelap");
     document.body.classList.remove("dark");
   }
-})
+  localStore();
+  updateWarning();
+});
 
 function updateWarning() {
   if (list.children.length === 0 || list.innerHTML == "") {
@@ -40,7 +42,7 @@ function updateWarning() {
     warning.setAttribute("aria-hidden", "true");
     flagClear = true;
     clearAllButton.disabled = false;
-    clearAllButton.style.opacity = "1"; 
+    clearAllButton.style.opacity = "1";
     clearAllButton.style.cursor = "pointer";
   }
 }
@@ -80,8 +82,9 @@ closeInput.addEventListener("click", function () {
 
 function localStore() {
   const cards = document.querySelectorAll(".card");
+  const buttonNight = document.querySelector(".dark-button");
   const data = [];
-  const dataBack = [];
+  const dataBack = buttonNight.classList.contains("night") ? "dark" : "light";
   cards.forEach((card) => {
     data.push({
       kegiatan: card.querySelector("p").textContent,
@@ -90,7 +93,7 @@ function localStore() {
       label: card.getAttribute("aria-label"),
     });
   });
-  dataBack.push(darkButton.classList.contains("night") ? "dark" : "light");
+  localStorage.setItem("theme", JSON.stringify(dataBack));
   localStorage.setItem("kegiatan", JSON.stringify(data));
 }
 
@@ -147,6 +150,18 @@ insert.addEventListener("click", function () {
 
 function loadLocalStore() {
   const data = JSON.parse(localStorage.getItem("kegiatan") || "[]");
+  const theme = JSON.parse(localStorage.getItem("theme"));
+
+  if(theme === "dark") {
+    darkButton.classList.add("night");
+    darkButton.classList.remove("light");
+    document.body.classList.add("dark");
+  } else {
+    darkButton.classList.remove("night");
+    darkButton.classList.add("light");
+    document.body.classList.remove("dark");
+  }
+
   list.innerHTML = "";
   data.forEach((item) => {
     const HTMLstring = `
@@ -172,10 +187,10 @@ loadLocalStore();
 
 const sortable = new Sortable(list, {
   animation: 150,
-  ghostClass: 'ghost',
+  ghostClass: "ghost",
   onEnd: function () {
     localStore();
-  }
+  },
 });
 
 list.addEventListener("change", function (e) {
