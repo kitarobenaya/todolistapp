@@ -13,6 +13,7 @@ const clearAllButton = document.querySelector(".clearall");
 let flagClear = false;
 const darkButton = document.querySelector(".dark-button");
 
+// Function to toggle dark mode
 darkButton.addEventListener("click", function () {
   this.classList.toggle("night");
   if (this.classList.contains("night")) {
@@ -29,6 +30,7 @@ darkButton.addEventListener("click", function () {
   updateWarning();
 });
 
+// Function to update warning message and clear all button state
 function updateWarning() {
   if (list.children.length === 0 || list.innerHTML == "") {
     warning.classList.remove("none");
@@ -47,6 +49,7 @@ function updateWarning() {
   }
 }
 
+// Function to show input and glass
 function showInputAndGlass() {
   input.classList.add("showInput");
   input.style.zIndex = "2";
@@ -56,10 +59,12 @@ function showInputAndGlass() {
   updateWarning();
 }
 
+// Show input and glass when add button is clicked
 add.addEventListener("click", function () {
   showInputAndGlass();
 });
 
+// Function to close input and glass
 function closeFunc() {
   input.classList.remove("showInput");
   input.classList.add("hideInput");
@@ -75,28 +80,13 @@ function closeFunc() {
   }, 600);
 }
 
+// input close button
 closeInput.addEventListener("click", function () {
   closeFunc();
   updateWarning();
 });
 
-function localStore() {
-  const cards = document.querySelectorAll(".card");
-  const buttonNight = document.querySelector(".dark-button");
-  const data = [];
-  const dataBack = buttonNight.classList.contains("night") ? "dark" : "light";
-  cards.forEach((card) => {
-    data.push({
-      kegiatan: card.querySelector("p").textContent,
-      jam: card.querySelector(".wrap p").textContent,
-      checkbox: card.querySelector('input[type="checkbox"]').checked,
-      label: card.getAttribute("aria-label"),
-    });
-  });
-  localStorage.setItem("theme", JSON.stringify(dataBack));
-  localStorage.setItem("kegiatan", JSON.stringify(data));
-}
-
+// Insert function to add new activity
 insert.addEventListener("click", function () {
   if (kegiatan.value === "" || jamkegiatan.value === "") {
     Swal.fire({
@@ -111,9 +101,11 @@ insert.addEventListener("click", function () {
     setTimeout(() => {
       const HTMLstring = `
         <div class="card showadd" aria-label="kegiatan ${kegiatan.value} pada jam ${jamkegiatan.value}">
-        <p>${kegiatan.value}</p>
+        <p class='pKegiatan'>${kegiatan.value}</p>
+        <input type='text' class='editinp' value='${kegiatan.value}' hidden>
         <div class="wrap">
-        <p>${jamkegiatan.value}</p>
+        <p class='pJam'>${jamkegiatan.value}</p>
+        <input type='text' class='editinp' value='${jamkegiatan.value}' hidden>
         <input type='checkbox' class='checkbox'>
           <button class="remove">
             <img src="img/cross.svg" alt="remove" />
@@ -148,11 +140,30 @@ insert.addEventListener("click", function () {
   }
 });
 
+// localStore function to save data to localStorage
+function localStore() {
+  const cards = document.querySelectorAll(".card");
+  const buttonNight = document.querySelector(".dark-button");
+  const data = [];
+  const dataBack = buttonNight.classList.contains("night") ? "dark" : "light";
+  cards.forEach((card) => {
+    data.push({
+      kegiatan: card.querySelector("p").textContent,
+      jam: card.querySelector(".wrap p").textContent,
+      checkbox: card.querySelector('input[type="checkbox"]').checked,
+      label: card.getAttribute("aria-label"),
+    });
+  });
+  localStorage.setItem("theme", JSON.stringify(dataBack));
+  localStorage.setItem("kegiatan", JSON.stringify(data));
+}
+
+// loadLocalStore function to load data from localStorage
 function loadLocalStore() {
   const data = JSON.parse(localStorage.getItem("kegiatan") || "[]");
   const theme = JSON.parse(localStorage.getItem("theme"));
 
-  if(theme === "dark") {
+  if (theme === "dark") {
     darkButton.classList.add("night");
     darkButton.classList.remove("light");
     document.body.classList.add("dark");
@@ -166,9 +177,11 @@ function loadLocalStore() {
   data.forEach((item) => {
     const HTMLstring = `
         <div class="card" aria-label="${item.label}">
-          <p>${item.kegiatan}</p>
+          <p class='pKegiatan'>${item.kegiatan}</p>
+        <input type='text' class='edit editkegiatan' value='${item.kegiatan}' hidden>
           <div class="wrap">
-            <p>${item.jam}</p>
+            <p class='pJam'>${item.jam}</p>
+        <input type='text' class='edit editjam' value='${item.jam}' hidden>
         <input type='checkbox' class='checkbox'${
           item.checkbox ? "checked" : ""
         }>
@@ -185,6 +198,7 @@ function loadLocalStore() {
 
 loadLocalStore();
 
+// drag and drop function
 const sortable = new Sortable(list, {
   animation: 150,
   ghostClass: "ghost",
@@ -193,12 +207,61 @@ const sortable = new Sortable(list, {
   },
 });
 
+// checkbox function
 list.addEventListener("change", function (e) {
   if (e.target.classList.contains("checkbox")) {
     localStore();
   }
 });
 
+// edit function
+list.addEventListener("click", function (e) {
+  if (e.target.classList.contains("pKegiatan")) {
+    const card = e.target.closest(".card");
+    const kegiatanInput = card.querySelector(".editkegiatan");
+    if (kegiatanInput.hidden) {
+      kegiatanInput.hidden = false;
+      e.target.hidden = true;
+      kegiatanInput.focus();
+    }
+    kegiatanInput.addEventListener("blur", function () {
+      kegiatanInput.hidden = true;
+      e.target.hidden = false;
+      e.target.textContent = kegiatanInput.value;
+      card.setAttribute(
+        "aria-label",
+        `kegiatan ${kegiatanInput.value} pada jam ${
+          card.querySelector(".editjam").value
+        }`
+      );
+      localStore();
+      updateWarning();
+    });
+  }
+
+  if (e.target.classList.contains("pJam")) {
+    const card = e.target.closest(".card");
+    const jamInput = card.querySelector(".editjam");
+    if (jamInput.hidden) {
+      jamInput.hidden = false;
+      e.target.hidden = true;
+      jamInput.focus();
+    }
+    jamInput.addEventListener("blur", function () {
+      jamInput.hidden = true;
+      e.target.hidden = false;
+      e.target.textContent = jamInput.value;
+      card.setAttribute(
+        "aria-label",
+        `kegiatan ${card.querySelector(".editkegiatan").value} pada jam ${jamInput.value}`
+      );
+      localStore();
+      updateWarning();
+    });
+  }
+});
+
+// remove function
 list.addEventListener("click", function (e) {
   if (e.target.closest(".remove")) {
     Swal.fire({
@@ -213,6 +276,7 @@ list.addEventListener("click", function (e) {
   }
 });
 
+// clear all function
 clearAllButton.addEventListener("click", function () {
   localStorage.removeItem("kegiatan");
   Swal.fire({

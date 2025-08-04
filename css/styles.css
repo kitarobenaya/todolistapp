@@ -9,54 +9,9 @@ html {
   height: 100%;
 }
 
-.none { 
+/* global class */
+.none {
   display: none;
-}
-
-div.dark-button-wrapper {
-  width: 40px;
-  height: 20px;
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 24px;
-}
-
-.dark-button {
-  width: 20px;
-  height: 20px;
-  background-color: #fff;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  position: relative;
-}
-
-.dark-button.night {
-  animation: slideNight 500ms ease-in-out forwards;
-}
-
-@keyframes slideNight {
-  0% {
-    left: 0px;
-  }
-  100% {
-    left: 20px;
-  }
-}
-
-.dark-button.light {
-  animation: slideLight 500ms ease-in-out forwards;
-}
-
-@keyframes slideLight {
-  0% {
-    left: 20px;
-  }
-  100% {
-    left: 0px;
-  }
 }
 
 .dark {
@@ -68,6 +23,8 @@ div.dark-button-wrapper {
   transition: opacity 0.3s ease-in-out;
   cursor: grabbing;
 }
+
+/* / global class */
 
 body {
   background-color: rgb(50, 135, 210);
@@ -90,6 +47,56 @@ header {
   text-align: center;
   width: fit-content;
   height: auto;
+}
+
+header div.dark-button-wrapper {
+  width: 40px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: inset 1px rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 24px;
+}
+
+header div.dark-button-wrapper .dark-button {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  left: 0px;
+}
+
+header .dark-button.night {
+  animation: slideNight 500ms ease-in-out forwards;
+}
+
+@keyframes slideNight {
+  0% {
+    left: 0px;
+  }
+  100% {
+    left: 20px;
+  }
+}
+
+header .dark-button.light {
+  animation: slideLight 500ms ease-in-out forwards;
+}
+
+@keyframes slideLight {
+  0% {
+    left: 20px;
+  }
+  100% {
+    left: 0px;
+  }
 }
 
 header h1 {
@@ -333,7 +340,7 @@ main .container {
   max-height: 320px;
   position: relative;
   overflow-y: auto;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 0.5rem;
   width: 40%;
   display: flex;
@@ -357,7 +364,7 @@ main .container .card {
   background-color: rgb(50, 135, 210);
   padding: 1rem;
   border-radius: 0.5rem;
-  width: 60%;
+  width: 80%;
   height: auto;
   display: flex;
   align-items: center;
@@ -366,6 +373,24 @@ main .container .card {
   row-gap: 10px;
   color: #fff;
   font-weight: 500;
+}
+
+.pKegiatan,
+.pJam {
+  cursor: text;
+}
+
+input.edit {
+  width: 180px;
+  height: fit-content;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  outline: none;
+  background-color: transparent;
+  color: #fff;
+  font-family: "Poppins";
+  font-weight: 500;
+  text-align: center;
 }
 
 main .container .card.showadd {
@@ -482,15 +507,19 @@ footer {
   }
 
   main .container {
-    width: 90%;
+    width: 100%;
   }
 
   main .container .card {
-    width: 90%;
+    width: 100%;
   }
 
+  main .container .card input.edit{
+    width: 150px;
+  } 
+
   main button.clearall {
-    margin-left: 68%;
+    margin-left: 72%;
   }
 }
 
@@ -498,22 +527,22 @@ footer {
 
 @media screen and (min-width: 600px) and (max-width: 1200px) {
   main .input-section {
-    width: 60%;
-  }
-
-  main .button-wrap {
-    margin-left: 51%;
-  }
-
-  main .container {
-    width: 60%;
-  }
-
-  main .container .card {
     width: 70%;
   }
 
+  main .button-wrap {
+    margin-left: 62%;
+  }
+
+  main .container {
+    width: 70%;
+  }
+
+  main .container .card {
+    width: 80%;
+  }
+
   main button.clearall {
-    margin-left: 48%;
+    margin-left: 60%;
   }
 }

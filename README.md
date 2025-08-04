@@ -32,4 +32,3 @@ This project is built for hone skills in DOM manipulation, event handling, and `
 
 - [ ] Task filter
 - [ ] Edit task name
-- [ ] Dark mode
