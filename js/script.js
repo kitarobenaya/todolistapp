@@ -11,6 +11,21 @@ const jamkegiatan = document.getElementById("jamkegiatan");
 const insert = document.getElementById("insert");
 const clearAllButton = document.querySelector(".clearall");
 let flagClear = false;
+const darkButton = document.querySelector(".dark-button");
+
+darkButton.addEventListener("click", function () {
+  this.classList.toggle("night");
+  if( this.classList.contains("night")) {
+    this.classList.remove("light");
+    this.setAttribute("aria-label", "ubah tema ke terang");
+    document.body.classList.add("dark");
+  } else {
+    this.classList.remove("night");
+    this.classList.add("light");
+    this.setAttribute("aria-label", "ubah tema ke gelap");
+    document.body.classList.remove("dark");
+  }
+})
 
 function updateWarning() {
   if (list.children.length === 0 || list.innerHTML == "") {
@@ -66,6 +81,7 @@ closeInput.addEventListener("click", function () {
 function localStore() {
   const cards = document.querySelectorAll(".card");
   const data = [];
+  const dataBack = [];
   cards.forEach((card) => {
     data.push({
       kegiatan: card.querySelector("p").textContent,
@@ -74,6 +90,7 @@ function localStore() {
       label: card.getAttribute("aria-label"),
     });
   });
+  dataBack.push(darkButton.classList.contains("night") ? "dark" : "light");
   localStorage.setItem("kegiatan", JSON.stringify(data));
 }
 

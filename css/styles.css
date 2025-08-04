@@ -9,8 +9,62 @@ html {
   height: 100%;
 }
 
-.none {
+.none { 
   display: none;
+}
+
+div.dark-button-wrapper {
+  width: 40px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 24px;
+}
+
+.dark-button {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  left: -10px;
+}
+
+.dark-button.night {
+  animation: slideNight 500ms ease-in-out forwards;
+}
+
+@keyframes slideNight {
+  0% {
+    left: -10px;
+  }
+  100% {
+    left: 10px;
+  }
+}
+
+.dark-button.light {
+  animation: slideLight 500ms ease-in-out forwards;
+}
+
+@keyframes slideLight {
+  0% {
+    left: 10px;
+  }
+  100% {
+    left: -10px;
+  }
+}
+
+.dark {
+  background-color: #333;
 }
 
 .ghost {
@@ -410,6 +464,17 @@ footer {
 /* responsive for mobile */
 
 @media screen and (max-width: 480px) {
+  .dark-button-wrapper {
+    width: 30px;
+    height: 10px;
+  }
+
+  .dark-button {
+    width: 20px;
+    height: 20px;
+    left: -5px;
+  }
+
   header h1 {
     font-size: 2.5rem;
   }
