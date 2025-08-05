@@ -31,4 +31,3 @@ This project is built for hone skills in DOM manipulation, event handling, and `
 ## 📌 Development Plan (To-do)
 
 - [ ] Task filter
-- [ ] Edit task name
